@@ -12,7 +12,7 @@
 #
 # Recommended: add any editor/OS/tool-specific ignore rules from the Global/ templates as needed.
 # See: https://github.com/github/gitignore/tree/main/Global
-#
+
 .utmp/
 /[Ll]ibrary/
 /[Tt]emp/
@@ -110,5 +110,11 @@ InitTestScene*.unity*
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 
+<<<<<<< HEAD
+=======
+# UI Toolkit auto generated files
+/UIElementsSchema/
+
+>>>>>>> e0b4aecb9172815514a7bad8ee2c23de9f4e3501
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*

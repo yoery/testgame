@@ -5,6 +5,8 @@ public class PlayerMovement2 : MonoBehaviour
 {
     public float speed = 5f;
 
+    [SerializeField] private Animator animator;
+
     void Update()
     {
         float horizontal = 0f;
@@ -30,6 +32,11 @@ public class PlayerMovement2 : MonoBehaviour
         }
 
         Vector3 movement = new Vector3(horizontal, vertical, 0f).normalized;
+
         transform.Translate(movement * speed * Time.deltaTime);
+
+        // Update the walking animation
+        bool isMoving = movement.magnitude > 0f;
+        animator.SetBool("IsRunning", isMoving);
     }
 }

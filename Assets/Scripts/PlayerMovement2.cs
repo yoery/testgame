@@ -14,29 +14,34 @@ public class PlayerMovement2 : MonoBehaviour
 
         if (Keyboard.current != null)
         {
-            if (Keyboard.current.aKey.isPressed ||
-                Keyboard.current.leftArrowKey.isPressed)
+            if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
                 horizontal = -1f;
-
-            if (Keyboard.current.dKey.isPressed ||
-                Keyboard.current.rightArrowKey.isPressed)
+            if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
                 horizontal = 1f;
-
-            if (Keyboard.current.sKey.isPressed ||
-                Keyboard.current.downArrowKey.isPressed)
+            if (Keyboard.current.sKey.isPressed || Keyboard.current.downArrowKey.isPressed)
                 vertical = -1f;
-
-            if (Keyboard.current.wKey.isPressed ||
-                Keyboard.current.upArrowKey.isPressed)
+            if (Keyboard.current.wKey.isPressed || Keyboard.current.upArrowKey.isPressed)
                 vertical = 1f;
         }
 
         Vector3 movement = new Vector3(horizontal, vertical, 0f).normalized;
-
         transform.Translate(movement * speed * Time.deltaTime);
 
-        // Update the walking animation
-        bool isMoving = movement.magnitude > 0f;
+        bool isMoving = movement.sqrMagnitude > 0f;
         animator.SetBool("IsRunning", isMoving);
+
+        if (isMoving)
+        {
+            if (Mathf.Abs(horizontal) >= Mathf.Abs(vertical))
+            {
+                animator.SetFloat("MoveX", horizontal);
+                animator.SetFloat("MoveY", 0f);
+            }
+            else
+            {
+                animator.SetFloat("MoveX", 0f);
+                animator.SetFloat("MoveY", vertical);
+            }
+        }
     }
 }
